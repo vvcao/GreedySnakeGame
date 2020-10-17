@@ -6,7 +6,9 @@
 #include <conio.h>
 #include <windows.h>
 
+
 int score = 0;//分数记录
+int slep = 300;//速度设定
 
 void update()//更新显示
 {
@@ -84,7 +86,6 @@ int main()
     initFood();
     update();
 
-
     char key = 'a';
     char preKey;
     while(1)
@@ -143,7 +144,8 @@ int main()
         printf("score: %d", score);//分数显示
         if(eatFood()==1)
         {
-            score++;
+            score += 100;//分数增加
+            slep -= 10;//速度加快
         }
 
 
@@ -162,10 +164,14 @@ int main()
         gotoxy(tail_X, tail_Y);
         printf(" ");
 
+        gotoxy(0, 0);//补左上角空缺
+        printf("*");
+
 
         update();
-        Sleep(100);
+        Sleep(slep);
     }
 
     return 0;
 }
+
